@@ -1,0 +1,26 @@
+<div class="col-md-5">
+  <h1 class="h1-strong">
+    Inicia Sesión
+  </h1>
+  <div class="alert alert-success" *ngIf="status === 'success'">
+      Login Successfully
+    </div>
+    <div class="alert alert-danger" *ngIf="status === 'error'">
+       Usuario o  contraseña incorrectos!
+    </div>
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-12">
+      <div class="form-group">
+          <input type="email" class="form-control" placeholder="Usuario" name="correo" [(ngModel)]="user.correo" #correo="ngModel" required>
+          <span *ngIf="!correo.valid && correo.touched">
+              El usuario es requerido!
+          </span>          
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Contraseña" name="contrasena" [(ngModel)]="user.contrasena" #contrasena="ngModel" required>
+          <span *ngIf="!contrasena.valid && contrasena.touched">
+            La contraseña es  requerida!
+          </span>  
+        </div>
+        <button type="submit" class="btn btn-primary">Ingresar</button>    
+  </form>
+</div>

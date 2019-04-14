@@ -1,0 +1,4 @@
+Para correr servidor: ng serve
+Para crear modelos: ng g cl nombre_modelo --type=model
+Para crear servicios: ng g s nombre_servicio --spec=false
+Para crear componente: ng generate c nombre_componente --spec=false -s

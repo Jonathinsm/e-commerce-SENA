@@ -1,0 +1,41 @@
+<div class="col-md-6">
+  <h1>{{title}}</h1>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Creado</th>
+        <th scope="col">Unidad</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Presentación</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Creado Por</th>
+        <th scope="col">Proveedor</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos">
+        <th scope="row">{{producto.prodId}}</th>
+        <td>{{producto.proNombre}}</td>
+        <td>{{producto.prodDescripcion}}</td>
+        <td>{{producto.prodPrecio}}</td>
+        <td>{{ (producto.prodFechaCreacion) | amLocale:'es' | amDateFormat:'LL'}}</td>
+        <td>{{producto.uniNombre}}</td>
+        <td>{{producto.catNombre}}</td>
+        <td>{{producto.preNombre}}</td>
+        <td>{{producto.marNombre}}</td>
+        <td>{{producto.usuNombre}} {{producto.usuApellido}}</td>
+        <td>{{producto.proNombre}}</td>
+        <td>
+          <a href=""><i class="fas fa-edit"></i></a>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>

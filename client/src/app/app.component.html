@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">{{title}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="identity">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/']"><i class="fas fa-home"></i> Inicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fas fa-cart-plus"></i> Productos</a>
+      </li>
+      <div class="dropdown" *ngIf="identity.usuIdRole ==  3">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-cog"></i>
+              Administración
+            </a>
+          <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li class="dropdown-submenu">
+                <a  class="dropdown-item" tabindex="-1" href="#">Productos</a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item"><a tabindex="-1" [routerLink]="['/listarproductos']">Consultar</a></li>
+                  <li class="dropdown-item"><a [routerLink]="['/nuevoproducto']">Regisrar</a></li>
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item" href="#">Detalle prductos</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="#">Marcas</a></li>
+                        <li class="dropdown-item"><a href="#">Categorias</a></li>
+                        <li class="dropdown-item"><a href="#">Presentación</a></li>
+                        <li class="dropdown-item"><a href="#">Unidades</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                  <a  class="dropdown-item" tabindex="-1" href="#">Compras</a>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-item"><a tabindex="-1" href="#">Consultar</a></li>
+                    <li class="dropdown-item"><a [routerLink]="['/compra']">Regisrar</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown-submenu">
+                  <a  class="dropdown-item" tabindex="-1" href="#">Usuarios</a>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-item"><a tabindex="-1" href="#">Consultar</a></li>
+                    <li class="dropdown-item"><a href="#">Permisos</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item"><a href="#">Ventas</a></li>
+              <li class="dropdown-item"><a href="#">Inventarios</a></li>
+            </ul>
+      </div>
+    </ul>
+    <ul class="nav navbar navbar-right">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{identity.usuNombre}} {{identity.usuApellido}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['/misdatos']"><i class="fas fa-user"></i> Mis datos</a>
+          <a class="dropdown-item" [routerLink]="['/mistarjetas']"><i class="fas fa-credit-card"></i> Mi tarjetas</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item pointer" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Salir</a>
+        </div>
+     </li>
+    </ul>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="!identity">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/acceder']">Iniciar Sesión</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/registro']">Registrarse</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>

@@ -1,0 +1,78 @@
+<!--
+<div class="col-md-6">
+  <h1 class="h1-strong">{{title}}</h1>
+  <div class="alert alert-success" *ngIf="status === 'success'">
+    Producto registardo, <a [routerLink]="['/acceder']">Ver productos</a>
+  </div>
+  <div class="alert alert-danger" *ngIf="status === 'error'">
+    No se pudo registar producto.
+  </div>
+  <br>
+  <form class="col-md-10" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Nombre" name="nombre" [(ngModel)]="product.nombre" #nombre="ngModel" required />
+        <span *ngIf="!nombre.valid && nombre.touched">
+          El nommbre es nescesario!
+        </span>
+      </div>
+      <div class="form-group">
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripción" name="descripcion" [(ngModel)]="product.descripcion" #descripcion="ngModel" required></textarea>
+          <span *ngIf="!descripcion.valid && descripcion.touched">
+          La descripcion es nescesaria!
+          </span>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Precio" name="precio" [(ngModel)]="product.precio" #precio="ngModel" required />
+        <span *ngIf="!precio.valid && precio.touched">
+          El precio es nescesario!
+        </span>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Unidad</label>
+      <select class="form-control" id="exampleFormControlSelect1" name="idunidad" [(ngModel)]="product.idunidad" #idunidad="ngModel" required>
+        <option *ngFor="let unidad of unidades" value="{{unidad.uniId}}">{{unidad.uniNombre}}</option>
+      </select>
+        <span *ngIf="!idunidad.valid && idunidad.touched">
+          Falta unidad!
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Categoria</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="idcategoria" [(ngModel)]="product.idcategoria" #idcategoria="ngModel" required>
+          <option *ngFor="let categoria of categorias" value="{{categoria.catId}}">{{categoria.catNombre}}</option>
+        </select>
+          <span *ngIf="!idcategoria.valid && idcategoria.touched">
+            Falta Categoria!
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Presentación</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="idpresentacion" [(ngModel)]="product.idpresentacion" #idpresentacion="ngModel" required>
+            <option *ngFor="let present of presentaciones" value="{{present.preId}}">{{present.preNombre}}</option>
+          </select>
+            <span *ngIf="!idpresentacion.valid && idpresentacion.touched">
+              Falta presentacion!
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Marca</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="idmarca" [(ngModel)]="product.idmarca" #idmarca="ngModel" required>
+              <option *ngFor="let marca of marcas" value="{{marca.marId}}">{{marca.marNombre}}</option>
+            </select>
+              <span *ngIf="!idmarca.valid && idmarca.touched">
+                Falta Marca!
+              </span>
+            </div>
+        <button type="submit" class="btn btn-primary">Registro</button>
+  </form>
+</div>
+-->
+
+<div class="jumbotron jumbotron-fluid">
+  <h3 class="display-4 text-center">Titulo</h3>
+  <div class="contaier">
+    <div class="col-md-10 offset-md-1">
+      
+    </div>
+  </div>
+</div>
