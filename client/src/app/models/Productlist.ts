@@ -4,11 +4,13 @@ export class Productlist {
     descripcion : string;
     precio : string;
     fechacreacion : string;
+    cantidad: string;
     unidad : string;
     categoria : string;
     presentacion : string;
     marca : string;
     nombreusu : string;
     apellidousu : string;
-    proveedor : string
+    proveedor : string;
+    Cantidad: number
 }

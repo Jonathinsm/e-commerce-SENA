@@ -1,23 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { GLOBAL } from './global';
 import { User } from '../models/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class UserService{
-    public url:string;
     public identity;
     public token;
 
     constructor(public _http: HttpClient){
-        this.url = GLOBAL.url;
     }
 
     register(user: User): Observable<any>{
         let params = JSON.stringify(user);
         let headers = new HttpHeaders().set('Content-Type','application/json');
-        return this._http.post(this.url+'users', params, {headers:headers});
+        return this._http.post(environment.apiURL+'users', params, {headers:headers});
     }
 
     signup(user, gettoken = null): Observable<any>{
@@ -26,7 +24,7 @@ export class UserService{
         }
         let params = JSON.stringify(user);
         let headers = new HttpHeaders().set('Content-Type','application/json');
-        return this._http.post(this.url+'users/login', params, {headers:headers});
+        return this._http.post(environment.apiURL+'users/login', params, {headers:headers});
     }
 
     getIdentity(){
@@ -54,7 +52,7 @@ export class UserService{
         let headers = new HttpHeaders()
             .set('Content-Type','application/json')
             .set('Authorization', this.getToken());
-        return this._http.put(this.url+'users/'+user.usuId, params, {headers:headers});
+        return this._http.put(environment.apiURL+'users/'+user.usuId, params, {headers:headers});
     }
 
 }

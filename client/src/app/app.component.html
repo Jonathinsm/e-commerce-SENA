@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">{{title}}</a>
+  <a class="navbar-brand" [routerLink]="['/']"><img src="assets/logo.png" alt="logo-supermarket" width="50px" height="50"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -10,7 +10,7 @@
         <a class="nav-link" [routerLink]="['/']"><i class="fas fa-home"></i> Inicio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-cart-plus"></i> Productos</a>
+        <a class="nav-link" [routerLink]="['/compras']"><i class="fas fa-cart-plus"></i> Productos</a>
       </li>
       <div class="dropdown" *ngIf="identity.usuIdRole ==  3">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,8 +37,8 @@
               <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Compras</a>
                   <ul class="dropdown-menu">
-                    <li class="dropdown-item"><a tabindex="-1" href="#">Consultar</a></li>
-                    <li class="dropdown-item"><a [routerLink]="['/compra']">Regisrar</a></li>
+                    <li class="dropdown-item"><a tabindex="-1" [routerLink]="['/pedidos']">Consultar</a></li>
+                    <li class="dropdown-item"><a [routerLink]="['/pedido']">Regisrar</a></li>
                   </ul>
               </li>
               <li class="dropdown-submenu">
@@ -62,6 +62,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['/misdatos']"><i class="fas fa-user"></i> Mis datos</a>
           <a class="dropdown-item" [routerLink]="['/mistarjetas']"><i class="fas fa-credit-card"></i> Mi tarjetas</a>
+          <a class="dropdown-item" [routerLink]="['/miscompras']"><i class="fas fa-history"></i> Mis Compras</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item pointer" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Salir</a>
         </div>
@@ -80,3 +81,16 @@
   </div>
 </nav>
 <router-outlet></router-outlet>
+<footer class="container-fluid text-center bg-lightgray">
+    <div class="copyrights" style="margin-top:25px;">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+      </a>
+      <br/>Esta obra está bajo una
+      <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        Licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional.
+      </a>
+      <p>Bogotá-Colombia © 2019
+        <br><span>Web diseñada por: Jonathan Simanca</span></p>
+    </div>
+</footer>

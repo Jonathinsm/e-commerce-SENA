@@ -1,7 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { UserService } from './services/user.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import * as jQuery from 'jquery';
+//import * as jQuery from 'jquery';
 
 @Component({
   selector: 'app-root',

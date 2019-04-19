@@ -5,7 +5,7 @@ const mysqlConn = require('../middlewares/database');
 //Metodo que nos permite obtener todos los productos
 function GetProducts (req,res){
     const query =`
-SELECT P.prodId,P.prodNombre,P.prodDescripcion,P.prodPrecio,P.prodFechaCreacion,U.uniNombre,C.catNombre,PR.preNombre,M.marNombre,US.usuNombre,US.usuApellido,PO.proNombre FROM productos P
+SELECT P.prodId,P.prodNombre,P.prodDescripcion,P.prodPrecio,P.prodFechaCreacion,P.prodCantidad,U.uniNombre,C.catNombre,PR.preNombre,M.marNombre,US.usuNombre,US.usuApellido,PO.proNombre FROM productos P
 INNER JOIN unidades U ON P.prodIdUnidad=U.uniId
 INNER JOIN categorias C ON P.prodIdCategoria=C.catId
 INNER JOIN presentaciones PR ON P.prodIdPresentacion=PR.preId
@@ -127,10 +127,27 @@ function getAtrributes(req,res){
     });
 }
 
+function getProductsSingle(req, res){
+    var sql = "SELECT P.prodId,P.prodNombre FROM productos P";
+    mysqlConn.query(sql,(err,rows,fields) =>{
+        if(!err){
+            if(rows.length > 0){
+                var productos = rows;
+                res.json(productos);
+            }else{
+                res.json({status:"No se encontraron atributos"});
+            }
+        }else{
+            console.log(err);
+        };
+    });
+}
+
 module.exports = {
     GetProducts,
     FindProduct,
     CreateProduct,
     UpdatePrduct,
-    getAtrributes
+    getAtrributes,
+    getProductsSingle
 }

@@ -14,5 +14,22 @@
 table.table-hover tbody tr:hover{
 cursor: pointer;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.item-producto{
+    margin:0 5px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.item-img{
+    width: 100px;
+    height: 100px;
+}
+
+.carrito{
+    border: solid 1px silver;
+    padding: 10px;
+    border-radius: 7px;
+    position: fixed;
+    display: block;
+}

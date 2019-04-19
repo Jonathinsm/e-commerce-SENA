@@ -7,6 +7,7 @@ const md_auth = require('../middlewares/authenticated');
 
 router.get('/product', md_auth.ensureAuth,ProductsController.GetProducts);
 router.get('/producatributes',ProductsController.getAtrributes);
+router.get('/productssingle',ProductsController.getProductsSingle);
 router.post('/product',ProductsController.CreateProduct);
 router.get('/product/:id',ProductsController.FindProduct);
 router.put('/product/:id',ProductsController.UpdatePrduct);

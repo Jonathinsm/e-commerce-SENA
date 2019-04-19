@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>{{title}}</h1>
+  <table class="table table-hover">
+      <thead class="thead-light">
+        <th>No. Compra</th>
+        <th>Fecha</th>
+        <th>Nombres</th>
+        <th>Total Compra</th>
+        <th>
+          <a class="btn btn-outline-success" routerLink="/compras"><i class="fa fa-plus-square"></i> Comprar</a>
+        </th>
+      </thead>
+      <tbody *ngFor="let item of sellsList">
+        <tr *ngIf="identity.usuId==item.usuId">
+          <th>{{item.ventId}}</th>
+          <td>{{item.ventFecha}}</td>
+          <td>{{item.usuNombre}} {{item.usuApellido}}</td>
+          <td>{{item.venTotal}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

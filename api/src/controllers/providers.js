@@ -4,7 +4,7 @@ const mysqlConn = require('../middlewares/database');
 
 //Metodo que nos permite obtener todos los proveedores
 function GetProviders (req,res){
-    mysqlConn.query('SELECT * FROM proveedor', (err,rows,fields) =>{
+    mysqlConn.query('SELECT * FROM proveedores', (err,rows,fields) =>{
         if(!err){
             if(rows.length > 0){
                 var proveedores = rows;

@@ -6,6 +6,7 @@ const user_routes = require('./routes/users');
 const prov_routes = require('./routes/providers');
 const purch_routes = require('./routes/purchases');
 const prod_routes = require('./routes/products');
+const sell_routes = require('./routes/sells');
 
 // Settings
 app.set('port', process.env.PORT || 3000);
@@ -28,6 +29,7 @@ app.use('/api',user_routes);
 app.use('/api',prov_routes);
 app.use('/api',purch_routes);
 app.use('/api',prod_routes);
+app.use('/api',sell_routes);
 
 app.listen(app.get('port'), ()=> {
     console.log('Server on port',  app.get('port'))

@@ -85,6 +85,7 @@ prodId int auto_increment primary key,
 prodNombre varchar(50) not null,
 prodDescripcion varchar(255) not null,
 prodPrecio float not null,
+prodCantidad int default 0,
 prodFechaCreacion datetime default now(),
 prodIdUnidad int not null,
 prodIdCategoria int not null,
@@ -96,17 +97,15 @@ prodIdUsuario int not null
 create table ventas(
 ventId int auto_increment primary key,
 ventFecha datetime default now(),
-venSubTotal float not null,
-venIva float not null,
 venTotal float not null,
-venIdCliente int not null,
-venIDEmpleado int not null
+venIdCliente int not null
  );
 
 create table detalleventas(
 detvenIdVenta int not null,
 detvenIdProducto int not null,
-detvenCantidad int not null
+detvenCantidad int not null,
+detvenTotal int not null
 );
 
 CREATE TABLE compras(
@@ -121,17 +120,15 @@ CREATE TABLE detallecompras(
 detcomIdProducto int not null,
 detcomIdCompra int not null,
 detcomCantidad int not null,
-detcomPrecio int not null
+detcomPrecio int not null,
+detcomTotal int not null
 );
 
 CREATE TABLE inventarios(
 invId int auto_increment primary key,
 invFecha datetime default now(),
-invCantidadEntradas int,
-invCantidadSalidas int,
-invCantidadActual int,
-invCantidadMaxima int,
-invCantidadMinima int,
+invCantidadEntradas int default 0,
+invCantidadSalidas int default 0,
 invIdProducto int not null,
 invIdDetalle int not null
 );
@@ -386,16 +383,50 @@ END
 
 --Triggers--
 
-CREATE TRIGGER entradas_p1_ai AFTER INSERT ON compras
+CREATE TRIGGER entradas_bi BEFORE INSERT ON detallecompras
 FOR EACH ROW
-INSERT INTO inventario (idproducto,iddetalle,valor_unitario,entradas_cantidad,entradas_valores)
-VALUES (new.idproducto,2,new.valor_unitario,new.cantidad,new.valor_unitario*new.cantidad);
+INSERT INTO inventarios (invCantidadEntradas,invIdProducto,invIdDetalle)
+VALUES (new.detcomCantidad,new.detcomIdProducto,2);
 
-CREATE TRIGGER entradas_p2_ai AFTER INSERT ON compras
+CREATE TRIGGER salidas_bi BEFORE INSERT ON detalleventas
 FOR EACH ROW
-UPDATE producto
-SET cantidad_actual = cantidad_actual + new.cantidad
-WHERE id_producto = new.idproducto;
+INSERT INTO inventarios (invCantidadSalidas,invIdProducto,invIdDetalle)
+VALUES (new.detvenCantidad,new.detvenIdProducto,3);
+
+CREATE TRIGGER entradas_ai AFTER INSERT ON detallecompras
+FOR EACH ROW
+INSERT INTO inventarios (invCantidadEntradas,invIdProducto,invIdDetalle)
+VALUES (new.detcomCantidad,new.detcomIdProducto,2);
+
+CREATE TRIGGER salidas_ai AFTER INSERT ON detalleventas
+FOR EACH ROW
+INSERT INTO inventarios (invCantidadSalidas,invIdProducto,invIdDetalle)
+VALUES (new.detvenCantidad,new.detvenIdProducto,3);
+
+DELIMITER //
+CREATE PROCEDURE Actualiza_Inventario(id INT)
+    BEGIN
+        DECLARE entradas int;
+        DECLARE salidas  int;
+        DECLARE total int;
+            SET entradas:=(SELECT SUM(invCantidadEntradas) FROM inventarios WHERE invIdProducto = id);
+            SET salidas:=(SELECT SUM(invCantidadSalidas) FROM inventarios WHERE invIdProducto = id);
+            SET total:=entradas-salidas;
+        UPDATE productos 
+        SET prodCantidad = total
+        WHERE prodId = id;
+    END;//
+DELIMITER ;
+
+
+DELIMITER //
+CREATE TRIGGER inventariosactualiza AFTER INSERT ON inventarios
+FOR EACH ROW
+    BEGIN
+        CALL Actualiza_Inventario(new.invIdProducto);
+    END;//
+DELIMITER ;
+
 
 CREATE TRIGGER audita_productos_bu BEFORE UPDATE ON productos
 FOR EACH ROW
@@ -412,3 +443,10 @@ INNER JOIN marcas M ON P.prodIdMarca=M.marId
 INNER JOIN usuarios US ON P.prodIdUsuario=US.usuId
 INNER JOIN proveedores PO ON M.marIdProv=PO.proId
 WHERE proId= ?;
+
+SELECT C.comId,C.comFecha,P.proNombre,C.comTotal FROM compras C
+INNER JOIN proveedores P ON C.comIdProveedor=P.proId
+
+SELECT V.ventId,V.ventFecha,V.venTotal,U.usuNombre,U.usuApellido,U.usuCorreo FROM ventas V
+INNER JOIN usuarios U ON V.venIdCliente=U.usuId
+

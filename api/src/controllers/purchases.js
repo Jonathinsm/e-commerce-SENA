@@ -4,7 +4,11 @@ const mysqlConn = require('../middlewares/database');
 
 //Metodo que nos permite obtener todas las compras
 function GetPurchases (req,res){
-    mysqlConn.query('SELECT * FROM compra', (err,rows,fields) =>{
+    const query = `
+    SELECT C.comId,C.comFecha,P.proNombre,C.comTotal FROM compras C
+    INNER JOIN proveedores P ON C.comIdProveedor=P.proId
+    `;
+    mysqlConn.query(query, (err,rows,fields) =>{
         if(!err){
             if(rows.length > 0){
                 var compras = rows;
@@ -35,29 +39,39 @@ function FindPurchases (req,res){
     });
 };
 
-//Metodo que registra el detalle de una compra
-function RegisterDetailPurchase(req,res){
-    const {} = req.body;
-    mysqlConn.query('INSERT INTO detalle compras (detcomIdProducto,detcomIdCompra,detcomCantidad,detcomPrecio) VALUES (?,?,?,?)',[], (err,rows,fields)=>{
-
-    })
-}
-
-//Metodo que permite registrar una compra
-function RegisterPurchase (req,res){
-    const {comId,total,proveedor,usuario} = req.body;
-    if(comId && total && proveedor && usuario){
-        mysqlConn.query('INSERT INTO compras (comId,comTotal,comIdProveedor,comIdUsuario) VALUES (?,?,?,?)', [comId,total,proveedor,usuario], (err, rows, fields)=>{
-            if(!err){
-                res.json({Status:'Compra registrada'});
+//Metodo que registra una compra y sus detalles
+function RegisterPurchase(req,res){
+    const { comId,comTotal,provId,usuId,OrderItems} = req.body;
+    try
+    {
+        mysqlConn.query('INSERT INTO compras (comId,comTotal,comIdProveedor,comIdUsuario) VALUES (?,?,?,?)',[comId,comTotal,provId,usuId], (err,rows,fields)=>{
+            if(err){
+                console.log(err)
             }else{
-                console.log(err);
-            };       
-        }); 
-    }else{
-        res.json({Status:"Todos los datos son nescesarios"});
-    };
-};
+                OrderItems.forEach(element => {
+                    mysqlConn.query('INSERT INTO detallecompras (detcomIdCompra,detcomIdProducto,detcomPrecio,detcomCantidad,detcomTotal) VALUES (?,?,?,?,?)',
+                    [element.detcomIdCompra,
+                    element.detcomIdProducto,
+                    element.detcomPrecio,
+                    element.detcomIdCantidad,
+                    element.detcomTotal], (err,rows,fields)=>{
+                        if(err){
+                            console.log(err)
+                        }else{
+                            console.log("Registro Guardado")
+                        }
+                    })
+                });
+
+                res.json({status:"Compra registrada"});
+            }
+        })
+    }
+    catch (ex)
+    {
+        throw ex;
+    }
+}
 
 function getAtrributes(req,res){
     var sql = `
@@ -85,6 +99,6 @@ function getAtrributes(req,res){
 module.exports = {
     GetPurchases,
     FindPurchases,
-    RegisterPurchase,
-    getAtrributes
+    getAtrributes,
+    RegisterPurchase
 }

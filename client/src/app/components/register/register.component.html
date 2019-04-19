@@ -1,56 +1,58 @@
-<div class="col-md-6">
-    <h1 class="h1-strong">Registrarse</h1>
-    <div class="alert alert-success" *ngIf="status === 'success'">
-      Registro exitoso, <a [routerLink]="['/acceder']">¡Inicia sesión aqui!</a>
-    </div>
-    <div class="alert alert-danger" *ngIf="status === 'error'">
-      El usuario o cedula ya existe, intenta de nuevo. Si el error persiste contacta a soporte.
-    </div>
-    <br>
-    <br>
-    <form class="col-md-10" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Identificacion" name="identificacion" [(ngModel)]="user.identificacion" #identificacion="ngModel" required />
-          <span *ngIf="!identificacion.valid && identificacion.touched">
-            La identificacion es nescesaria!
-          </span>
+<div class="container">
+    <div class="col-md-6">
+        <h1 class="h1-strong">Registrarse</h1>
+        <div class="alert alert-success" *ngIf="status === 'success'">
+          Registro exitoso, <a [routerLink]="['/acceder']">¡Inicia sesión aqui!</a>
         </div>
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Nombre" name="nombre" [(ngModel)]="user.nombre" #nombre="ngModel" required />
-            <span *ngIf="!nombre.valid && nombre.touched">
-              El nombre es nescesario!
-            </span>
+        <div class="alert alert-danger" *ngIf="status === 'error'">
+          El usuario o cedula ya existe, intenta de nuevo. Si el error persiste contacta a soporte.
         </div>
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Apellido" name="apellido" [(ngModel)]="user.apellido" #apellido="ngModel" required />
-          <span *ngIf="!apellido.valid && apellido.touched">
-            El apellido es nescesario!
-          </span>
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Dirección" name="direccion" [(ngModel)]="user.direccion" #direccion="ngModel" required />
-        <span *ngIf="!direccion.valid && direccion.touched">
-          La direccion es nescesaria!
-        </span>
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Teléfono" name="telefono" [(ngModel)]="user.telefono" #telefono="ngModel" required />
-        <span *ngIf="!telefono.valid && telefono.touched">
-          El telefono es nescesario!
-        </span>
-      </div>
-        <div class="form-group">
-            <input type="email" class="form-control" placeholder="Correo" name="correo" [(ngModel)]="user.correo" #correo="ngModel" required />
-            <span *ngIf="!correo.valid && correo.touched">
-              Debe indicar un correo para inciar sesión.
-            </span>
-        </div>        
+        <br>
+        <br>
+        <form class="col-md-10" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Identificacion" name="identificacion" [(ngModel)]="user.identificacion" #identificacion="ngModel" required />
+              <span *ngIf="!identificacion.valid && identificacion.touched">
+                La identificacion es nescesaria!
+              </span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Nombre" name="nombre" [(ngModel)]="user.nombre" #nombre="ngModel" required />
+                <span *ngIf="!nombre.valid && nombre.touched">
+                  El nombre es nescesario!
+                </span>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Apellido" name="apellido" [(ngModel)]="user.apellido" #apellido="ngModel" required />
+              <span *ngIf="!apellido.valid && apellido.touched">
+                El apellido es nescesario!
+              </span>
+          </div>
           <div class="form-group">
-            <input type="password" class="form-control" placeholder="Contraseña" name="contrasena" [(ngModel)]="user.contrasena" #contrasena="ngModel" required />
-            <span *ngIf="!contrasena.valid && contrasena.touched">
-              La contraseña es nescesaria!
+            <input type="text" class="form-control" placeholder="Dirección" name="direccion" [(ngModel)]="user.direccion" #direccion="ngModel" required />
+            <span *ngIf="!direccion.valid && direccion.touched">
+              La direccion es nescesaria!
             </span>
           </div>
-          <button type="submit" class="btn btn-primary">Registro</button>   
-    </form>
-  </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Teléfono" name="telefono" [(ngModel)]="user.telefono" #telefono="ngModel" required />
+            <span *ngIf="!telefono.valid && telefono.touched">
+              El telefono es nescesario!
+            </span>
+          </div>
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Correo" name="correo" [(ngModel)]="user.correo" #correo="ngModel" required />
+                <span *ngIf="!correo.valid && correo.touched">
+                  Debe indicar un correo para inciar sesión.
+                </span>
+            </div>        
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Contraseña" name="contrasena" [(ngModel)]="user.contrasena" #contrasena="ngModel" required />
+                <span *ngIf="!contrasena.valid && contrasena.touched">
+                  La contraseña es nescesaria!
+                </span>
+              </div>
+              <button type="submit" class="btn btn-primary">Registro</button>   
+        </form>
+      </div>
+</div>
