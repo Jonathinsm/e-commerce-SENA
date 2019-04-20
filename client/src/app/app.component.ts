@@ -21,14 +21,17 @@ export class AppComponent implements OnInit, DoCheck {
     this.title = 'Alpha'
   }
 
+  //Persiste los datos de la sesión
   ngOnInit(){
     this.identity = this._userService.getIdentity();
   }
 
+  //Verifica  la identidad del suario
   ngDoCheck(){
     this.identity = this._userService.getIdentity();
   }
 
+  //Cerrar la sesión
   logout(){
     localStorage.clear();
     this.identity = null;

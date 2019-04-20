@@ -17,6 +17,7 @@ import { ContactComponent } from './components/contact/contact.component';
 
 import { UserGuard } from './services/user.guard';
 
+//Rutas de mi aplicación
 const routes: Routes = [
   {path: '', component: HomeComponent },
   {path: 'acceder', component:  LoginComponent },
@@ -32,7 +33,7 @@ const routes: Routes = [
     {path:'editar/:id',component:OrderComponent, canActivate:[UserGuard]}
   ]},
   {path: 'compras', component: SellproductsComponent, canActivate:[UserGuard]},
-  {path: 'contacto', component: ContactComponent, canActivate:[UserGuard]}
+  {path: 'contacto', component: ContactComponent}
 ];
 
 @NgModule({

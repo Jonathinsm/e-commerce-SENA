@@ -1,27 +1,29 @@
-# Client
+# Cliente:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+Este cliente esta construiido con [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
 
-## Development server
+## Ejecutar servidor:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Para correr este codigo debes tener instalado  Nodejs y Angular Cli y Git.
+Una vez descargado el codigo con "Git pull"(Debes tener algunos cconocimmientos), instalas las dependencias con:
+    npm i
+Despues ejecutas el servidor de desarrollo con:
+    ng serve
 
-## Code scaffolding
+##Funcionalidad:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Este cliente funciona como interfaz grafica de un backend desarrollado en Nodejs. Se consume como Rest-Api y
+se autentica con el backend mediante ciertos metodos.
 
-## Build
+Puedes verificar los directorios  de components, models y services para verlos modulos desarrollados.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Librerias adiconales:
 
-## Running unit tests
+Estos modulos permiten apliar la funcionalidad de ciertas caracteristicas de la aplicación.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+    -bootstrap: Aplicar estilos css al clente.
+    -jquery: Extiende funcionalidad de bootrap.
+    -ngx-toastr: Permite manejar notificaciones en pantalla despues de un evento.
+    -rxjs: Permite enviar encabezados http con mas parametros.
+    -angular2-moment: Permite formatear fechas para que sean mas comprensibles.
+    -@angular/material: Permite manejar modales de una forma mas facil.
