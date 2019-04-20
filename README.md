@@ -5,7 +5,9 @@
 #                          SENA-2019
 
 > Proyecto de software: Alpha Supermercados
+
 > Desarrollado por: Jonathan Simanca Mora
+
 > Ficha: 1564983
 
 **Funcionalidad de Software**
@@ -22,6 +24,6 @@
 
 ***Vista de la página principal***
 
-[![INSERT YOUR GRAPHIC HERE](https://drive.google.com/open?id=1vD0BzLx8Y9FCerlPAUA8XAPqP1m0gP4Y)]()
+[![HOME PAGE](https://github.com/Jonathinsm/e-commerce-SENA/blob/master/client/src/assets/homepage.png)]()
 
 - Para mas información consultta los archivvos `README`, ubicados en las carpetas "api" y "cliente".
