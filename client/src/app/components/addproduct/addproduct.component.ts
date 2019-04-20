@@ -20,6 +20,7 @@ export class AddproductComponent implements OnInit {
   public product: Product;
   public status: string;
   public user: User;
+  public token;
   public identity;
   public unidades: Unidad[];
   public categorias: Categoria[];
@@ -35,11 +36,12 @@ export class AddproductComponent implements OnInit {
     this.title = "Registrar Nuevo Producto";
     this.user = this._userService.getIdentity();
     this.identity = this.user;
+    this.token = this._userService.getToken();
     this.product = new Product("0","","","","","","","",this.user.usuId);
   }
 
   ngOnInit() {
-    this._productService.getAtributes().subscribe(
+    this._productService.getAtributes(this.token).subscribe(
       res =>{
         if(res){
           this.unidades = res.unidades;
@@ -55,7 +57,7 @@ export class AddproductComponent implements OnInit {
   }
 
   onSubmit(form){
-    this._productService.register(this.product).subscribe(
+    this._productService.register(this.product,this.token).subscribe(
       res =>{
           if(res.message == 'Producto creado'){
             this.status = 'success';

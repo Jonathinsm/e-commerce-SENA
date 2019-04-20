@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Order } from './order.model';
 import { OrderItem } from './order-item.model';
@@ -10,22 +11,30 @@ import { environment } from 'src/environments/environment';
 export class OrderService {
   formData: Order;
   orderItems: OrderItem[];
+  token;
 
   constructor(private http: HttpClient) { }
   
 
-  saveOrUpdateOrder() {
+  saveOrUpdateOrder(token): Observable<any>{
     var body = {
       ...this.formData,
       OrderItems: this.orderItems
     };
-    return this.http.post(environment.apiURL + '/purchases', body);
+    let headers = new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization', token);
+    return this.http.post(environment.apiURL + '/purchases', body, {headers:headers});
   }
 
-  getOrderList() {
-    return this.http.get(environment.apiURL + '/purchases').toPromise();
+  getOrderList(token): Observable<any>{
+    let headers = new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization', token);
+    return this.http.get(environment.apiURL + '/purchases',{headers:headers})
   }
 
+  /*
   getOrderByID(id:number):any {
     return this.http.get(environment.apiURL + '/Order/'+id).toPromise();
   }
@@ -33,5 +42,6 @@ export class OrderService {
   deleteOrder(id:number) {
     return this.http.delete(environment.apiURL + '/Order/'+id).toPromise();
   }
+  */
 
 }

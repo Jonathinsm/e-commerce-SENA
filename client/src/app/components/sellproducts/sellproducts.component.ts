@@ -88,7 +88,7 @@ export class SellproductsComponent implements OnInit {
       venTotal : this.totalcompra,
       items :  this.productsCart
     }
-    this._sellService.registerBill(this.venta).subscribe(
+    this._sellService.registerBill(this.venta,this.token).subscribe(
       res=>{
         if(res.status  == "Venta Registrada"){
           this.toastr.success('Su compra ha sido registrada!!', 'Compras Alpha');

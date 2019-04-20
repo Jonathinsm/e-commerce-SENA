@@ -380,29 +380,6 @@ BEGIN
     SELECT _id AS prodId;
 END
 
-
---Triggers--
-
-CREATE TRIGGER entradas_bi BEFORE INSERT ON detallecompras
-FOR EACH ROW
-INSERT INTO inventarios (invCantidadEntradas,invIdProducto,invIdDetalle)
-VALUES (new.detcomCantidad,new.detcomIdProducto,2);
-
-CREATE TRIGGER salidas_bi BEFORE INSERT ON detalleventas
-FOR EACH ROW
-INSERT INTO inventarios (invCantidadSalidas,invIdProducto,invIdDetalle)
-VALUES (new.detvenCantidad,new.detvenIdProducto,3);
-
-CREATE TRIGGER entradas_ai AFTER INSERT ON detallecompras
-FOR EACH ROW
-INSERT INTO inventarios (invCantidadEntradas,invIdProducto,invIdDetalle)
-VALUES (new.detcomCantidad,new.detcomIdProducto,2);
-
-CREATE TRIGGER salidas_ai AFTER INSERT ON detalleventas
-FOR EACH ROW
-INSERT INTO inventarios (invCantidadSalidas,invIdProducto,invIdDetalle)
-VALUES (new.detvenCantidad,new.detvenIdProducto,3);
-
 DELIMITER //
 CREATE PROCEDURE Actualiza_Inventario(id INT)
     BEGIN
@@ -419,11 +396,25 @@ CREATE PROCEDURE Actualiza_Inventario(id INT)
 DELIMITER ;
 
 
+--Triggers--
+
 DELIMITER //
-CREATE TRIGGER inventariosactualiza AFTER INSERT ON inventarios
+CREATE TRIGGER salidas_ai AFTER INSERT ON detalleventas
 FOR EACH ROW
     BEGIN
-        CALL Actualiza_Inventario(new.invIdProducto);
+        INSERT INTO inventarios (invCantidadSalidas,invIdProducto,invIdDetalle)
+        VALUES (new.detvenCantidad,new.detvenIdProducto,3);
+        CALL Actualiza_Inventario(new.detvenIdProducto);
+    END;//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER entradas_ai AFTER INSERT ON detallecompras
+FOR EACH ROW
+    BEGIN
+        INSERT INTO inventarios (invCantidadEntradas,invIdProducto,invIdDetalle)
+        VALUES (new.detcomCantidad,new.detcomIdProducto,2);
+        CALL Actualiza_Inventario(new.detcomIdProducto);
     END;//
 DELIMITER ;
 

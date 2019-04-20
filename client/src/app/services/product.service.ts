@@ -11,21 +11,25 @@ export class ProductService{
 
     constructor(public _http: HttpClient){}
 
-    register(product: Product): Observable<any>{
+    register(product: Product,token): Observable<any>{
         let params = JSON.stringify(product);
-        let headers = new HttpHeaders().set('Content-Type','application/json');
+        let headers = new HttpHeaders()
+            .set('Content-Type','application/json')
+            .set('Authorization', token);
         return this._http.post(environment.apiURL+'product', params, {headers:headers});
     }
 
-    getAtributes(): Observable<any>{
-        let headers = new HttpHeaders().set('Content-Type','application/json');
+    getAtributes(token): Observable<any>{
+        let headers = new HttpHeaders()
+            .set('Content-Type','application/json')
+            .set('Authorization', token);
         return this._http.get(environment.apiURL+'producatributes', {headers:headers});
     }
 
     getProducts(token): Observable<any>{
         let headers = new HttpHeaders()
             .set('Content-Type','application/json')
-            .set('Authorization', token);;
+            .set('Authorization', token);
         return this._http.get(environment.apiURL+'product', {headers:headers});
     }
 

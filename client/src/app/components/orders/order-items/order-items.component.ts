@@ -5,25 +5,32 @@ import { ItemService } from '../../shared/item.service';
 import { Item } from '../../shared/item.model';
 import { NgForm } from '@angular/forms';
 import { OrderService } from '../../shared/order.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-order-items',
   templateUrl: './order-items.component.html',
-  styles: []
+  styles: [],
+  providers: [UserService]
 })
 export class OrderItemsComponent implements OnInit {
   formData: OrderItem;
   itemList: Item[];
   isValid: boolean = true;
+  token;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<OrderItemsComponent>,
     private itemService: ItemService,
-    private orderSevice: OrderService) { }
+    private orderSevice: OrderService,
+    private userService: UserService
+    ) {
+      this.token = this.userService.getToken()
+    }
 
   ngOnInit() {
-    this.itemService.getItemList().then(res => this.itemList = res as Item[]);
+    this.itemService.getItemList(this.token).subscribe(res => this.itemList = res as Item[]);
    if (this.data.orderItemIndex == null)
       this.formData = {
         detcomIdProducto: "",

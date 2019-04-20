@@ -21,7 +21,6 @@ import { AddproductComponent } from './components/addproduct/addproduct.componen
 import { ListproductsComponent } from './components/listproducts/listproducts.component';
 
 //Services
-import { PurchaseService } from './services/purchase.service';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderComponent } from './components/orders/order/order.component';
 import { OrderItemsComponent } from './components/orders/order-items/order-items.component';
@@ -29,6 +28,9 @@ import { OrderService } from './components/shared/order.service';
 import { SellproductsComponent } from './components/sellproducts/sellproducts.component';
 import { ListsellsComponent } from './components/listsells/listsells.component';
 import { ContactComponent } from './components/contact/contact.component';
+
+import { UserService } from './services/user.service';
+import { UserGuard } from './services/user.guard';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,11 @@ import { ContactComponent } from './components/contact/contact.component';
     ToastrModule.forRoot()
   ],
   entryComponents:[OrderItemsComponent],
-  providers: [OrderService],
+  providers: [
+    OrderService,
+    UserService,
+    UserGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

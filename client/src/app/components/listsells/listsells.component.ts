@@ -13,6 +13,7 @@ export class ListsellsComponent implements OnInit {
   public sellsList;
   public user: User;
   identity;
+  token;
   title;
 
   constructor(
@@ -22,10 +23,11 @@ export class ListsellsComponent implements OnInit {
     this.title = "Mi Historial de Compras",
     this.user = this._userService.getIdentity();
     this.identity = this.user;
+    this.token = this._userService.getToken();
   }
 
   ngOnInit() {
-    this._sellService.GetBills().subscribe(
+    this._sellService.GetBills(this.token).subscribe(
       res=>{
         if(res.length>0){
           this.sellsList = res;

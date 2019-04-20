@@ -19,6 +19,7 @@ export class OrderComponent implements OnInit {
   customerList: Customer[];
   isValid: boolean = true;
   user: User;
+  token;
   title;
 
   constructor(private service: OrderService,
@@ -28,13 +29,14 @@ export class OrderComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private currentRoute: ActivatedRoute) {
-      this.title = "Abastecimiento de Productos"
+      this.title = "Abastecimiento de Productos";
       this.user = this.userService.getIdentity();
+      this.token = this.userService.getToken();
     }
 
   ngOnInit() {
     this.resetForm();
-    this.customerService.getCustomerList().then(res => this.customerList = res as Customer[]);
+    this.customerService.getCustomerList(this.token).subscribe(res => this.customerList = res as Customer[]);
   }
 
   resetForm(form?: NgForm) {
@@ -87,7 +89,7 @@ export class OrderComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (this.validateForm()) {
-      this.service.saveOrUpdateOrder().subscribe(res => {
+      this.service.saveOrUpdateOrder(this.token).subscribe(res => {
         this.resetForm();
         this.toastr.success('Creado Exitosamente', 'Pedidos Alpha');
         this.router.navigate(['/pedidos']);

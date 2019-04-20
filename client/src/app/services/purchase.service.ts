@@ -12,14 +12,18 @@ export class PurchaseService{
     constructor(public _http: HttpClient){
     }
 
-    register(purchase:Purchase): Observable<any>{
+    register(purchase:Purchase,token): Observable<any>{
         let params = JSON.stringify(purchase);
-        let headers = new HttpHeaders().set('Content-Type','application/json');
+        let headers = new HttpHeaders()
+            .set('Content-Type','application/json')
+            .set('Authorization', token);
         return this._http.post(environment.apiURL+'product', params, {headers:headers});
     }
 
-    getAtributes(): Observable<any>{
-        let headers = new HttpHeaders().set('Content-Type','application/json');
+    getAtributes(token): Observable<any>{
+        let headers = new HttpHeaders()
+            .set('Content-Type','application/json')
+            .set('Authorization', token);
         return this._http.get(environment.apiURL+'purchaseattributes', {headers:headers});
     }
 

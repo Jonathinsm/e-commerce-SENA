@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" [routerLink]="['/']"><img src="assets/logo.png" alt="logo-supermarket" width="50px" height="50"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -57,7 +57,7 @@
     <ul class="nav navbar navbar-right">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{identity.usuNombre}} {{identity.usuApellido}}
+         <strong class="text-name">{{identity.usuNombre}} {{identity.usuApellido}}</strong>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['/misdatos']"><i class="fas fa-user"></i> Mis datos</a>

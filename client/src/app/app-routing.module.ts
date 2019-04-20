@@ -15,22 +15,24 @@ import { SellproductsComponent } from './components/sellproducts/sellproducts.co
 import { ListsellsComponent } from './components/listsells/listsells.component';
 import { ContactComponent } from './components/contact/contact.component';
 
+import { UserGuard } from './services/user.guard';
+
 const routes: Routes = [
   {path: '', component: HomeComponent },
   {path: 'acceder', component:  LoginComponent },
   {path: 'registro', component: RegisterComponent},
-  {path: 'misdatos', component: EdituserComponent},
+  {path: 'misdatos', component: EdituserComponent, canActivate:[UserGuard]},
   //{path: 'mistarjetas', component:},
-  {path: 'miscompras', component: ListsellsComponent},
-  {path: 'nuevoproducto', component: AddproductComponent},
-  {path: 'listarproductos', component: ListproductsComponent},
-  {path:'pedidos',component: OrdersComponent},
+  {path: 'miscompras', component: ListsellsComponent, canActivate:[UserGuard]},
+  {path: 'nuevoproducto', component: AddproductComponent, canActivate:[UserGuard]},
+  {path: 'listarproductos', component: ListproductsComponent, canActivate:[UserGuard]},
+  {path:'pedidos',component: OrdersComponent, canActivate:[UserGuard]},
   {path:'pedido',children:[
-    {path:'',component:OrderComponent},
-    {path:'editar/:id',component:OrderComponent}
+    {path:'',component:OrderComponent, canActivate:[UserGuard]},
+    {path:'editar/:id',component:OrderComponent, canActivate:[UserGuard]}
   ]},
-  {path: 'compras', component: SellproductsComponent},
-  {path: 'contacto', component: ContactComponent}
+  {path: 'compras', component: SellproductsComponent, canActivate:[UserGuard]},
+  {path: 'contacto', component: ContactComponent, canActivate:[UserGuard]}
 ];
 
 @NgModule({

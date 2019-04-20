@@ -10,14 +10,18 @@ export class SellService{
 
     constructor(public _http: HttpClient){}
 
-    registerBill(venta): Observable<any>{
+    registerBill(venta,token): Observable<any>{
         let params = JSON.stringify(venta);
-        let headers = new HttpHeaders().set('Content-Type','application/json');
+        let headers = new HttpHeaders()
+            .set('Content-Type','application/json')
+            .set('Authorization', token)
         return this._http.post(environment.apiURL+'sells', params, {headers:headers});
     }
 
-    GetBills(): Observable<any>{
-        let headers = new HttpHeaders().set('Content-Type','application/json');
+    GetBills(token): Observable<any>{
+        let headers = new HttpHeaders()
+            .set('Content-Type','application/json')
+            .set('Authorization', token);
         return this._http.get(environment.apiURL+'sells', {headers:headers});
     }
 }
