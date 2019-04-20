@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <h1 class="h1-strong">{{title}}</h1>
         <div class="alert alert-success" *ngIf="status === 'success'">
-          Producto registardo, <a [routerLink]="['/acceder']">Ver productos</a>
+          Producto registardo, <a [routerLink]="['/listarproductos']">Ver productos</a>
         </div>
         <div class="alert alert-danger" *ngIf="status === 'error'">
           No se pudo registar producto.
