@@ -1,4 +1,4 @@
-<a href="http://fvcproductions.com"><img src="https://drive.google.com/open?id=1QluyfkfrR5MZP-_qulqR0pLFCDBiPPkV" title="FVCproductions" alt="FVCproductions"></a>
+<img src="https://raw.githubusercontent.com/Jonathinsm/e-commerce-SENA/master/client/src/assets/logo.png" title="Alpha Supermarket" alt="Alpha Supermarket">
 
 
 # TECNOLOGIA EN ANALISIS Y DESARROLLO DE SISTEMAS DE INFORMACIÓN
