@@ -1,6 +1,6 @@
 # API:
 
-Esta api esta desarrollada con Nodejs 10.15.3 y Express 4.16.4
+Esta api esta desarrollada con <a href="https://nodejs.org/en/" target="_blank">**NodeJs**</a> 10.15.3 y  <a href="https://expressjs.com/" target="_blank">**NodeJs**</a> 4.16.4
 
 ## Ejecutar servidor:
 
@@ -35,7 +35,7 @@ Las funcionaliades que ofrece son:
 
 Estos modulos permiten apliar la funcionalidad de ciertas caracteristicas de la aplicación.
 
--bcrypt-nodejs: Encriptación de contraseñas.
--jwt-simple: Permite crear tokens para manejo de sesiones y autenticacón.
--moment: Permite formatear, nalizar, validar, manipular y mostrar fechas.
--promise-mysql: Manejador de conexion a base de datos Mysql y Querys.
+- bcrypt-nodejs: Encriptación de contraseñas.
+- jwt-simple: Permite crear tokens para manejo de sesiones y autenticacón.
+- moment: Permite formatear, nalizar, validar, manipular y mostrar fechas.
+- promise-mysql: Manejador de conexion a base de datos Mysql y Querys.

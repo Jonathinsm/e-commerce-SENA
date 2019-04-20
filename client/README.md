@@ -4,7 +4,7 @@ Este cliente esta construiido con [Angular CLI](https://github.com/angular/angul
 
 ## Ejecutar servidor:
 
-Para correr este codigo debes tener instalado  Nodejs y Angular Cli y Git.
+Para correr este codigo debes tener instalado  <a href="https://nodejs.org/en/" target="_blank">**NodeJs**</a>, <a href="https://cli.angular.io/" target="_blank">**Angular Cli**</a> y <a href="https://git-scm.com/" target="_blank">**Git**</a>.
 Una vez descargado el codigo con "Git pull"(Debes tener algunos cconocimmientos), instalas las dependencias con:
 
     - npm i
@@ -23,9 +23,9 @@ Puedes verificar los directorios  de components, models y services para verlos m
 
 Estos modulos permiten apliar la funcionalidad de ciertas caracteristicas de la aplicación.
 
--bootstrap: Aplicar estilos css al clente.
--jquery: Extiende funcionalidad de bootrap.
--ngx-toastr: Permite manejar notificaciones en pantalla despues de un evento.
--rxjs: Permite enviar encabezados http con mas parametros.
--angular2-moment: Permite formatear fechas para que sean mas comprensibles.
--@angular/material: Permite manejar modales de una forma mas facil.
+- bootstrap: Aplicar estilos css al clente.
+- jquery: Extiende funcionalidad de bootrap.
+- ngx-toastr: Permite manejar notificaciones en pantalla despues de un evento.
+- rxjs: Permite enviar encabezados http con mas parametros.
+- angular2-moment: Permite formatear fechas para que sean mas comprensibles.
+- @angular/material: Permite manejar modales de una forma mas facil.
